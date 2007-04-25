@@ -1,8 +1,7 @@
 %define	name		cim
-%define	version		3.36
-%define rel     	10
-%define release 	%mkrel_fixed %rel
-%define mkrel_fixed(c:) %{-c: 0.%{-c*}.}%{!?_with_unstable:%(perl -e '$_="%{1}";m/(\\d+)$/;$rel=${1}-1;re;print "$rel";').%{?subrel:%subrel}%{!?subrel:1}.%{?distversion:%distversion}%{?!distversion:%(echo $[%{mdkversion}/10])}}%{?_with_unstable:%{1}}%{?distsuffix:%distsuffix}%{?!distsuffix:mdk}
+%define	version		3.37
+%define rel     	1
+%define release 	%mkrel %rel
 %define	libname_orig	libcim
 %define	major		3
 %define	libname		%mklibname %{name} %{major}
@@ -15,7 +14,6 @@ Release:	%{release}
 Url:		ftp://ftp.ifi.uio.no/pub/cim/
 #http://www.ifi.uio.no/~cim/cim.html
 Source0:	ftp://ftp.ifi.uio.no/pub/cim/%{name}-%{version}.tar.bz2
-Patch0:		cim-3.36-gcc4.patch
 License:	GPL
 Group:		Development/Other
 Requires:	%{libname} = %{version}
@@ -48,24 +46,18 @@ applications which will use cim.
 
 %prep
 %setup -q
-%patch0 -p0
 
 %build
 rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT
-%ifarch ia64
-libtoolize --copy --force
-%endif
-#CFLAGS="$RPM_OPT_FLAGS" LDFLAGS=-s ./config?re --prefix=$RPM_BUILD_ROOT%{_prefix} --enable-dump=yes
 %configure	--enable-dump=yes
 (cd src; make libdir=%{_libdir} includedir=%{_includedir})
 %make all
 
 %install
 %makeinstall mandir=$RPM_BUILD_ROOT%{_mandir} infodir=$RPM_BUILD_ROOT%{_infodir}
-cd $RPM_BUILD_ROOT%{_libdir}; grep -v libdir libcim.la > libcim.la.tmp;\
-echo "libdir='/usr/lib'" >> libcim.la.tmp; mv libcim.la.tmp libcim.la;\
-chmod +x libcim.so.3.0.0
+
+cd $RPM_BUILD_ROOT%{_libdir};chmod +x libcim.so.3.0.0
 
 %clean 
 rm -rf $RPM_BUILD_ROOT
