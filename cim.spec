@@ -17,7 +17,6 @@ Source0:	ftp://ftp.ifi.uio.no/pub/cim/%{name}-%{version}.tar.bz2
 License:	GPL
 Group:		Development/Other
 Requires:	%{libname} = %{version}
-BuildRoot:	%{_tmppath}/%name-%version-root
 
 
 %description
