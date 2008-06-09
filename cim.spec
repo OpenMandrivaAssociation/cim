@@ -62,12 +62,16 @@ cd $RPM_BUILD_ROOT%{_libdir};chmod +x libcim.so.3.0.0
 %clean 
 rm -rf $RPM_BUILD_ROOT
 
+%if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
+%endif
 
 %post -n %{libname_devel}
 %_install_info %{name}.info
 
+%if %mdkversion < 200900
 %postun -n %{libname} -p /sbin/ldconfig
+%endif
 
 %postun -n %{libname_devel}
 %_remove_install_info %{name}.info
