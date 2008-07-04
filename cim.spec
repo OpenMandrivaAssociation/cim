@@ -1,6 +1,8 @@
+%define _disable_ld_no_undefined 1
+
 %define	name		cim
 %define	version		3.37
-%define rel     	1
+%define rel     	2
 %define release 	%mkrel %rel
 %define	libname_orig	libcim
 %define	major		3
@@ -17,8 +19,7 @@ Source0:	ftp://ftp.ifi.uio.no/pub/cim/%{name}-%{version}.tar.bz2
 License:	GPL
 Group:		Development/Other
 Requires:	%{libname} = %{version}
-BuildRoot:	%{_tmppath}/%name-%version-root
-
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Cim compiles Simula code to C and uses a C compiler like gcc to
