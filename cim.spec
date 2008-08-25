@@ -2,12 +2,12 @@
 
 %define	name		cim
 %define	version		3.37
-%define rel     	2
+%define rel     	3
 %define release 	%mkrel %rel
 %define	libname_orig	libcim
 %define	major		3
 %define	libname		%mklibname %{name} %{major}
-%define	libname_devel	%mklibname %{name} %{major} -d
+%define	libname_devel	%mklibname %{name} -d
 
 Summary:	Simula to C translator. Mother of all OO-languages
 Name:		%{name}
@@ -39,7 +39,9 @@ linked with cim (the Gnu Simula Compiler)
 Summary: Headers for developing programs that will use cim
 Group: Development/Other
 Requires: %{libname} = %{version}
+Provides: %{name}-devel
 Provides: %{libname_orig}-devel
+Obsoletes: %{libname}-devel
 
 %description -n %{libname_devel}
 This package contains the headers that programmers will need to develop
@@ -58,7 +60,7 @@ mkdir -p $RPM_BUILD_ROOT
 %install
 %makeinstall mandir=$RPM_BUILD_ROOT%{_mandir} infodir=$RPM_BUILD_ROOT%{_infodir}
 
-cd $RPM_BUILD_ROOT%{_libdir};chmod +x libcim.so.3.0.0
+cd $RPM_BUILD_ROOT%{_libdir};chmod +x libcim.so.%{major}.0.0
 
 %clean 
 rm -rf $RPM_BUILD_ROOT
@@ -84,7 +86,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n %{libname}
 %defattr(-, root, root)
-%{_libdir}/*.so.*
+%{_libdir}/*.so.%{major}*
 
 %files -n %{libname_devel}
 %defattr(-, root, root)
