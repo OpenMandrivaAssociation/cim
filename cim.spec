@@ -16,6 +16,7 @@ Release:	%{release}
 Url:		ftp://ftp.ifi.uio.no/pub/cim/
 #http://www.ifi.uio.no/~cim/cim.html
 Source0:	ftp://ftp.ifi.uio.no/pub/cim/%{name}-%{version}.tar.bz2
+Patch0:		cim-3.37-fix-str-fmt.patch
 License:	GPL
 Group:		Development/Other
 Requires:	%{libname} = %{version}
@@ -49,15 +50,15 @@ applications which will use cim.
 
 %prep
 %setup -q
+%patch0 -p0
 
 %build
-rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT
-%configure	--enable-dump=yes
+%configure2_5x	--enable-dump=yes
 (cd src; make libdir=%{_libdir} includedir=%{_includedir})
 %make all
 
 %install
+rm -fr %buildroot
 %makeinstall mandir=$RPM_BUILD_ROOT%{_mandir} infodir=$RPM_BUILD_ROOT%{_infodir}
 
 cd $RPM_BUILD_ROOT%{_libdir};chmod +x libcim.so.%{major}.0.0
@@ -97,4 +98,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/*/*
 %{_infodir}/*
 %doc README doc/SIMULA-HISTORY AUTHORS COPYING TODO
-
