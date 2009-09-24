@@ -2,7 +2,7 @@
 
 %define	name		cim
 %define	version		3.37
-%define rel     	4
+%define rel     	5
 %define release 	%mkrel %rel
 %define	libname_orig	libcim
 %define	major		3
@@ -17,6 +17,7 @@ Url:		ftp://ftp.ifi.uio.no/pub/cim/
 #http://www.ifi.uio.no/~cim/cim.html
 Source0:	ftp://ftp.ifi.uio.no/pub/cim/%{name}-%{version}.tar.bz2
 Patch0:		cim-3.37-fix-str-fmt.patch
+Patch1:		cim_fix_progname.patch
 License:	GPL
 Group:		Development/Other
 Requires:	%{libname} = %{version}
@@ -51,6 +52,7 @@ applications which will use cim.
 %prep
 %setup -q
 %patch0 -p0
+%patch1 -p1
 
 %build
 %configure2_5x	--enable-dump=yes
