@@ -2,7 +2,7 @@
 
 %define	name		cim
 %define	version		3.37
-%define rel     	5
+%define rel     	6
 %define release 	%mkrel %rel
 %define	libname_orig	libcim
 %define	major		3
