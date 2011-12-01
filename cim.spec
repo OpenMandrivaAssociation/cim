@@ -61,12 +61,12 @@ applications which will use cim.
 
 %install
 rm -fr %buildroot
-%makeinstall mandir=$RPM_BUILD_ROOT%{_mandir} infodir=$RPM_BUILD_ROOT%{_infodir}
+%makeinstall mandir=%{buildroot}%{_mandir} infodir=%{buildroot}%{_infodir}
 
-cd $RPM_BUILD_ROOT%{_libdir};chmod +x libcim.so.%{major}.0.0
+cd %{buildroot}%{_libdir};chmod +x libcim.so.%{major}.0.0
 
 %clean 
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
