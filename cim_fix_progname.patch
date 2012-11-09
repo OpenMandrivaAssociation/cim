@@ -1,0 +1,26 @@
+---
+ lib/tsglob.c |    4 	2 +	2 -	0 !
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+Index: cim-3.37/lib/tsglob.c
+===================================================================
+--- cim-3.37.orig/lib/tsglob.c	1998-09-12 10:59:29.000000000 -0400
++++ cim-3.37/lib/tsglob.c	2009-08-05 05:17:34.000000000 -0400
+@@ -77,7 +77,7 @@ __arrp __ap;
+ /* forskjellige dimmensjonene til et ARRAY(kodeoptimalisering)    */
+ int __h[MAX_ARRAY_DIM];
+ 
+-char *__progname;
++extern char *__progname;
+ 
+ __pty __pp;			/* Hjelpevariable i forbindelse med inspect
+ 				 * setninger og kall p} 
+@@ -117,7 +117,7 @@ char *__nullstr = "";		/* Brukes for } o
+ 
+ /* Variabel som skal ha programm navnet. 
+  * Brukes i den predefinerte rutienen simulaid */
+-char *__progname;
++extern char *__progname;
+ long __argc;
+ long __argv;
+ 
