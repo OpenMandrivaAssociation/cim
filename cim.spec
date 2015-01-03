@@ -1,4 +1,5 @@
 %define _disable_ld_no_undefined 1
+%define debug_package %{nil}
 
 %define	major	3
 %define	libname	%mklibname %{name} %{major}
@@ -44,6 +45,7 @@ applications which will use cim.
 %apply_patches
 
 %build
+export CFLAGS+="-Wno-return-type"
 %configure2_5x \
 	--enable-dump=yes \
 	--disable-static
