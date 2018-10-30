@@ -8,7 +8,7 @@
 Summary:	Simula to C translator. Mother of all OO-languages
 Name:		cim
 Version:	3.37
-Release:	18
+Release:	19
 License:	GPLv2
 Group:		Development/Other
 Url:		ftp://ftp.ifi.uio.no/pub/cim/
