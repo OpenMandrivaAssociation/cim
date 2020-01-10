@@ -42,7 +42,7 @@ applications which will use cim.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 %build
 export CFLAGS+="-Wno-return-type"
